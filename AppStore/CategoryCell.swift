@@ -10,6 +10,16 @@ import UIKit
 
 class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var appCategory: AppCategory? {
+        didSet {
+            
+            if let name = appCategory?.name {
+                nameLabel.text = name
+            }
+            
+        }
+    }
+    
     private let cellId = "appCellId"
     
     override init(frame: CGRect) {
@@ -87,7 +97,10 @@ class CategoryCell: UICollectionViewCell, UICollectionViewDataSource, UICollecti
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if let count = appCategory?.apps?.count {
+            return count
+        }
+        return 0
     }
     
     
